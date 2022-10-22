@@ -14,7 +14,7 @@ const CustomInputs = () => {
   return (
     <ScrollView>
       <View style={styles.viewstyle}>
-        <Text style={styles.title}> Enter Email </Text>
+        <Text style={styles.title}> Enter mail </Text>
         <TextInput
           style={styles.container}
           placeholder="eg: something@gmail.com                ."
