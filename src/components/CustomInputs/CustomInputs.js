@@ -3,64 +3,79 @@ import {
   Text,
   TextInput,
   StyleSheet,
-  ScrollView,
-  Image,
-  TextStyle,
+  //ScrollView,
+  //Image,
+  //TextStyle,
 } from 'react-native';
 import React from 'react';
-import ScrollViewCommands from 'react-native/Libraries/Components/ScrollView/ScrollViewCommands';
+import {Controller} from 'react-hook-form';
 
-const CustomInputs = () => {
+const CustomInputs = ({
+  control,
+  name,
+  rules = {},
+  placeholder,
+  secureTextEntry,
+  keyboardType,
+}) => {
   return (
-    <ScrollView>
-      <View style={styles.viewstyle}>
-        <Text style={styles.title}> Enter mail </Text>
-        <TextInput
-          style={styles.container}
-          placeholder="eg: something@gmail.com                ."
-          keyboardType="email-address"
-          autoComplete="email"
-          activeUnderlineColor="green"
-          /*maxLength={10}
-        left={<TextInput.Icon name="account"/>}
-        left={<TextInput.Icon name="form-textbox-password"/>}
-        mode="outlined"
-        style={{ margin: 10 }}
-        activeUnderlineColor="green"*/
-        />
-        <Text style={styles.title}> Enter Password </Text>
-        <TextInput
-          style={styles.container}
-          secureTextEntry={true}
-          placeholder="Password               ."
-          autoComplete="false"
-          activeUnderlineColor="green"
-          //left={<TextInput.Icon name="eye" />}
-        />
-      </View>
-    </ScrollView>
+    <Controller
+      control={control}
+      name={name}
+      rules={rules}
+      render={({field: {value, onChange, onBlur}, fieldState: {error}}) => (
+        <>
+          <View
+            style={[
+              styles.container,
+              {borderColor: error ? 'red' : '#e8e8e8'},
+            ]}>
+            <TextInput
+              value={value}
+              onChangeText={onChange}
+              onBlur={onBlur}
+              placeholder={placeholder}
+              style={styles.input}
+              secureTextEntry={secureTextEntry}
+            />
+          </View>
+          {error && (
+            <Text style={{color: 'red', alignSelf: 'stretch'}}>
+              {error.message || 'Error'}
+            </Text>
+          )}
+        </>
+      )}
+    />
   );
 };
 
 const styles = StyleSheet.create({
-  viewstyle: {
-    backgroundColor: '#CACFD2',
+  viewable: {
+    //backgroundColor: '#CACFD2',
+    height: 40,
+    width: '100%',
+    backgroundColor: 'white',
+    //borderColor: '#283747',
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    marginVertical: 5,
   },
   container: {
     flex: 1,
-    backgroundColor: 'white',
-    borderColor: '#283747',
     width: '100%',
-    borderRadius: 10,
-    padding: 15,
+    borderRadius: 5,
+    padding: 10,
+    paddingBottom: 10,
+    //paddingVertical: 20,
   },
   input: {},
-  title: {
+  /*title: {
     flex: 1,
     textAlign: 'left',
     fontSize: 16,
-    padding: 14,
-  },
+    padding: 30,
+  },*/
 });
 
 export default CustomInputs;

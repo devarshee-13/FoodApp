@@ -11,6 +11,7 @@ target 'FoodApp' do
   flags = get_default_flags()
 
   use_react_native!(
+    :modular_headers => true,
     :path => config[:reactNativePath],
     # Hermes is now enabled by default. Disable by setting this flag to false.
     # Upcoming versions of React Native may rely on get_default_flags(), but

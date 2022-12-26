@@ -8,27 +8,24 @@
 
 import React from 'react';
 
-import {SafeAreaView, ScrollView, StyleSheet, Text} from 'react-native';
+import {SafeAreaView, ScrollView, StyleSheet, Text, Button} from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import SignInScreen from './src/screens/SignInScreen';
-
-
-/* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
- * LTI update could not be added via codemod */
+import SignUpScreen from './src/screens/SignUpScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Navigation from './src/screens/navigation/navigation';
+import ApiData from './src/service/ApiData';
+import Main from './src/Main';
 
 const App = () => {
   return (
-    <SafeAreaView style={styles.root}>
-      <SignInScreen />
-    </SafeAreaView>
+    <Navigation />
+    // <Main />
+    //<Spoonacular />
   );
 };
-
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-  },
-});
 
 export default App;
